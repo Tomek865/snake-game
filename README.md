@@ -21,6 +21,6 @@ Moja własna implementacja kultowej gry **Snake** stworzona w języku Python. Pr
 
 1. Upewnij się, że masz zainstalowanego Pythona.
 2. Pobierz pliki projektu do jednego folderu.
-3Uruchom główny plik:
+3. Uruchom główny plik:
    ```bash
    python main.py
