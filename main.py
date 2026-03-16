@@ -1,6 +1,7 @@
 from turtle import Turtle,Screen
 import time
 
+from board import Board
 from point import Point
 from score import Score
 from snake import Snake
@@ -13,6 +14,8 @@ screen.tracer(0)
 snake = Snake()
 point = Point()
 score = Score()
+board = Board()
+board.draw_rect()
 
 screen.listen()
 screen.onkey(snake.up,"Up")
@@ -22,12 +25,13 @@ screen.onkey(snake.right,"Right")
 game_is_on = True
 while game_is_on:
     screen.update()
-    time.sleep(0.1)
+    time.sleep(0.2)
     snake.move()
 
     if snake.head.distance(point) < 15:
         point.spawn()
         snake.add_next_segment()
+        screen.update()
         score.update_score()
 
     if snake.head.xcor() > 290 or snake.head.xcor() < -290 or snake.head.ycor() > 290 or snake.head.ycor() < -290:

@@ -2,22 +2,23 @@ from turtle import Turtle
 
 class Snake:
     def __init__(self):
+        self.direction_locked = None
         self.pos = [0, 0]
         self.segments = []
         self.create_snake()
         self.head = self.segments[0]
 
     def create_snake(self):
-        for i in range(0, 3):
-            self.add_segment(i)
+        start_positions = [(0, 0), (-20, 0), (-40, 0)]
+        for pos in start_positions:
+            self.add_segment(pos)
 
-    def add_segment(self,position):
-            segment = Turtle(shape="square")
-            segment.up()
-            segment.setpos(self.pos[0], self.pos[1])
-            segment.color("white")
-            self.segments.append(segment)
-            self.pos[0] -= 20
+    def add_segment(self, position):
+        segment = Turtle(shape="square")
+        segment.color("white")
+        segment.up()
+        segment.goto(position)
+        self.segments.append(segment)
 
     def add_next_segment(self):
         self.add_segment(self.segments[-1].position())
@@ -28,6 +29,7 @@ class Snake:
                 y = self.segments[seq_num - 1].ycor()
                 self.segments[seq_num].goto(x, y)
             self.segments[0].forward(20)
+            self.direction_locked = False
 
     def up(self):
         if self.head.heading() != 270:
